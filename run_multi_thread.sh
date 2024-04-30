@@ -1,0 +1,1 @@
+g++ -o multi_thread multi_thread.cpp -std=c++11 -fopenmp && ./multi_thread
