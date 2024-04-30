@@ -1,1 +1,0 @@
-g++ -o single_thread single_thread.cpp -std=c++11 -fopenmp && ./single_thread

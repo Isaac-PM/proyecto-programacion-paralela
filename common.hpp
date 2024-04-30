@@ -1,3 +1,6 @@
+#ifndef COMMON_HPP
+#define COMMON_HPP
+
 #include <bits/stdc++.h>
 #include <fstream>
 #include <iostream>
@@ -13,15 +16,19 @@ using namespace std;
 const string VIRUS_SAMPLES_NAMES = "filenames/virus_samples_names.txt";
 const string VIRUS_SAMPLES_RESULTS_SINGLE_THREADED = "results/virus_samples_results_single_threaded.csv";
 const string VIRUS_SAMPLES_RESULTS_MULTI_THREADED = "results/virus_samples_results_multi_threaded.csv";
+const string VIRUS_TIME_RESULTS = "results/virus_time_results.csv";
 const string VIRUS_SAMPLES_PATH = "./virus_samples/";
 
 const string CLEAN_SAMPLES_NAMES = "filenames/clean_samples_names.txt";
 const string CLEAN_SAMPLES_RESULTS_SINGLE_THREADED = "results/clean_samples_results_single_threaded.csv";
 const string CLEAN_SAMPLES_RESULTS_MULTI_THREADED = "results/clean_samples_results_multi_threaded.csv";
+const string CLEAN_TIME_RESULTS = "results/clean_time_results.csv";
 const string CLEAN_SAMPLES_PATH = "./clean_samples/";
 
 const unsigned int NUMBER_OF_BYTES = 256;
 const unsigned int NUMBER_OF_TESTS = 3;
+const unsigned int NUMBER_OF_THREADS = 50;
+const unsigned int THREAD_STRIDE = 5;
 
 // -----------------------------------------
 // -- Structs
@@ -91,3 +98,5 @@ long getFileSizeIn(SizeUnit unit, FILE *file)
     }
     return size * unit;
 }
+
+#endif // COMMON_HPP

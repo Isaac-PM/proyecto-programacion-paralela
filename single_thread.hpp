@@ -17,7 +17,7 @@ void countBytesSingleThreaded(FILE *file, vector<ByteCount> &bytes)
     }
 }
 
-void testSingleThreaded(string sampleType, string sampleNamesFile, string samplePath, string resultsFile)
+void testSingleThreaded(string sampleType, string sampleNamesFile, string samplePath, string resultsFile, double &averageTime)
 {
     double totalTime = 0.0;
     unsigned int numberOfSamples = 0;
@@ -61,22 +61,7 @@ void testSingleThreaded(string sampleType, string sampleNamesFile, string sample
             saveRunInfo = false;
         }
     }
-
+    averageTime = totalTime / numberOfSamples;
     cout << "(Single-threaded version with " << sampleType << " samples) Average time reading one file: "
-         << totalTime / numberOfSamples << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
-}
-
-int main(int argc, char *argv[])
-{
-    // -----------------------------------------
-    // Virus samples
-    testSingleThreaded("VIRUS", VIRUS_SAMPLES_NAMES, VIRUS_SAMPLES_PATH, VIRUS_SAMPLES_RESULTS_SINGLE_THREADED);
-
-    cout << '\n';
-
-    // -----------------------------------------
-    // Clean samples
-    testSingleThreaded("CLEAN", CLEAN_SAMPLES_NAMES, CLEAN_SAMPLES_PATH, CLEAN_SAMPLES_RESULTS_SINGLE_THREADED);
-
-    return EXIT_SUCCESS;
+         << averageTime << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
 }
