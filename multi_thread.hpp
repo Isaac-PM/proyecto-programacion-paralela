@@ -69,11 +69,8 @@ void testMultiThreaded(string sampleType, string sampleNamesFile, string sampleP
     unsigned int numberOfSamples = 0;
     bool saveRunInfo = true;
 
-    cout << "Multi-threaded version with " << sampleType << " samples and " << threadNumber << " threads\n";
-
     for (int i = 0; i < NUMBER_OF_TESTS; i++)
     {
-        cout << "(" << sampleType << ") Test " << i + 1 << '\n';
         vector<ByteCount> bytes;
         initByteCountVector(bytes);
         fstream samplesFile(sampleNamesFile, ios::in);
@@ -103,6 +100,10 @@ void testMultiThreaded(string sampleType, string sampleNamesFile, string sampleP
         }
     }
     averageTime = totalTime / numberOfSamples;
-    cout << "(Multi-threaded version with " << sampleType << " samples) Average time reading one file: "
-         << averageTime << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
+    stringstream ss;
+    ss << "[Multi-threaded version with " << sampleType << " samples]\n";
+    ss << "\tNumber of threads: " << threadNumber << '\n';
+    ss << "\tNumber of samples: " << (numberOfSamples / NUMBER_OF_TESTS) << '\n';
+    ss << "\tAverage time reading one file: " << averageTime << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
+    cout << ss.str();
 }

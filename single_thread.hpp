@@ -23,11 +23,8 @@ void testSingleThreaded(string sampleType, string sampleNamesFile, string sample
     unsigned int numberOfSamples = 0;
     bool saveRunInfo = true;
 
-    cout << "Single-threaded version with " << sampleType << " samples\n";
-
     for (int i = 0; i < NUMBER_OF_TESTS; i++)
     {
-        cout << "(" << sampleType << ") Test " << i + 1 << '\n';
         vector<ByteCount> bytes;
         initByteCountVector(bytes);
         fstream samplesFile(sampleNamesFile, ios::in);
@@ -62,6 +59,10 @@ void testSingleThreaded(string sampleType, string sampleNamesFile, string sample
         }
     }
     averageTime = totalTime / numberOfSamples;
-    cout << "(Single-threaded version with " << sampleType << " samples) Average time reading one file: "
-         << averageTime << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
+    stringstream ss;
+    ss << "[Single-threaded version with " << sampleType << " samples]\n";
+    ss << "\tNumber of threads: 1\n";
+    ss << "\tNumber of samples: " << (numberOfSamples / NUMBER_OF_TESTS) << '\n';
+    ss << "\tAverage time reading one file: " << averageTime << "s, each file was read " << NUMBER_OF_TESTS << " times\n";
+    cout << ss.str();
 }
