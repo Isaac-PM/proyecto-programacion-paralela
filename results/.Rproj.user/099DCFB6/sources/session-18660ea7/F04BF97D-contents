@@ -1,0 +1,80 @@
+# install.packages("ggplot2")
+library(ggplot2)
+
+# Cargar los datos desde los archivos CSV
+datos_clean <- read.csv("clean_time_results.csv")
+datos_virus <- read.csv("virus_time_results.csv")
+
+# Calcular el mínimo tiempo promedio y obtener la cantidad de hilos asociada
+min_tiempo_clean <- min(datos_clean$Average_Time)
+min_tiempo_virus <- min(datos_virus$Average_Time)
+
+# Obtener la cantidad de hilos asociada al mínimo tiempo promedio
+hilos_min_tiempo_clean <- datos_clean$Threads[which.min(datos_clean$Average_Time)]
+hilos_min_tiempo_virus <- datos_virus$Threads[which.min(datos_virus$Average_Time)]
+
+# Crear un gráfico de líneas con marcador para el tiempo mínimo
+ggplot() +
+  geom_line(data = datos_clean, aes(x = Threads, y = Average_Time, color = "Sin virus"), alpha = 0.5) +
+  geom_line(data = datos_virus, aes(x = Threads, y = Average_Time, color = "Con virus"), alpha = 0.5) +
+  geom_point(data = data.frame(Threads = c(hilos_min_tiempo_clean, hilos_min_tiempo_virus),
+                               Average_Time = c(min_tiempo_clean, min_tiempo_virus),
+                               Tipo = c("Sin virus", "Con virus")), aes(x = Threads, y = Average_Time, color = Tipo), size = 3) +
+  labs(x = "Cantidad de hilos", y = "Promedio de tiempo en seg", title = "Promedio de tiempo de lectura de archivos binarios según cantidad de hilos para archivos con y sin virus") +
+  scale_color_manual(values = c("Sin virus" = "blue", "Con virus" = "red")) +
+  theme_minimal()
+
+# install.packages("plotly")
+# install.packages("dplyr")
+library(plotly)
+library(dplyr)
+# Cargar los datos desde los archivos CSV
+datos_clean <- read.csv("clean_samples_results_single_threaded.csv")
+datos_virus <- read.csv("virus_samples_results_single_threaded.csv")
+byte_mas_frecuente_clean <- datos_clean %>% arrange(desc(Count)) %>% slice(1)
+byte_menos_frecuente_clean <- datos_clean %>% arrange(Count) %>% slice(1)
+
+byte_mas_frecuente_virus <- datos_virus %>% arrange(desc(Count)) %>% slice(1)
+byte_menos_frecuente_virus <- datos_virus %>% arrange(Count) %>% slice(1)
+
+# Preparar los datos para el gráfico de barras
+bytes_labels <- c(
+  paste0("Más frecuente ", byte_mas_frecuente_virus$Byte, " - con Virus"),
+  paste0("Más frecuente ", byte_mas_frecuente_clean$Byte, " - sin Virus"),
+  paste0("Menos frecuente ", byte_menos_frecuente_virus$Byte, " - con Virus"),
+  paste0("Menos frecuente ", byte_menos_frecuente_clean$Byte, " - sin Virus")
+)
+bytes_counts <- c(
+  byte_mas_frecuente_virus$Count, 
+  byte_mas_frecuente_clean$Count,
+  byte_menos_frecuente_virus$Count,
+  byte_menos_frecuente_clean$Count
+)
+
+plot_ly(
+  x = bytes_labels,
+  y = bytes_counts,
+  type = "bar",
+  marker = list(color = c('blue', 'red', 'yellow', 'orange'), width = c(0.3, 0.3, 0.3, 0.3))
+) %>% 
+  layout(
+    title = "Bytes más y menos frecuentes en archivos binarios con virus y sin virus",
+    xaxis = list(
+      title = "Byte",
+      tickmode = "linear",  
+      tick0 = 0.2,         
+      dtick = 1             
+    ),
+    yaxis = list(
+      title = "Count",
+      type = "log",
+      tickvals = c(0, 1, 10, 100, 1000),  # Puedes ajustar estos valores según tus datos
+      ticktext = c(0, 1, 10, 100, 1000)   # Los valores que deseas mostrar en el eje y
+    ),
+    hoverlabel = list(font = list(size = 12))
+  ) %>% 
+  add_trace(
+    text = bytes_counts,
+    textposition = "auto"
+  )
+

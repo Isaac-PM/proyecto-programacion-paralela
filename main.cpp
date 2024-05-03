@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     // -----------------------------------------
     // Virus samples
     fstream virusTimeResults(VIRUS_TIME_RESULTS, ios::out);
-    virusTimeResults << "Threads,Average Time\n";
+    virusTimeResults << "Threads,Average_Time\n";
     double averageTime = 0.0;
     cout << "Reading virus samples...\n";
     testSingleThreaded("VIRUS", VIRUS_SAMPLES_NAMES, VIRUS_SAMPLES_PATH, VIRUS_SAMPLES_RESULTS_SINGLE_THREADED, averageTime);
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     // -----------------------------------------
     // Clean samples
     fstream cleanTimeResults(CLEAN_TIME_RESULTS, ios::out);
-    cleanTimeResults << "Threads,Average Time\n";
+    cleanTimeResults << "Threads,Average_Time\n";
     averageTime = 0.0;
     cout << "Reading clean samples...\n";
     testSingleThreaded("CLEAN", CLEAN_SAMPLES_NAMES, CLEAN_SAMPLES_PATH, CLEAN_SAMPLES_RESULTS_SINGLE_THREADED, averageTime);
