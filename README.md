@@ -13,7 +13,7 @@ Convertir un programa secuencial a uno que utilice hilos, con la finalidad de es
 
 # Programa a convertir
 
-Contador de bytes escrito en C, para de comparar el rendimiento entre contar de forma secuencial y de manera completamente paralela, esto para identificar si existe una correlación entre la cuenta de bytes de archivos maliciosos y archivos comunes.
+Contador de bytes escrito en C, para comparar el rendimiento entre contar de forma secuencial y de manera completamente paralela, esto para identificar si existe una correlación entre la cuenta de bytes de archivos maliciosos y archivos comunes.
 
 # Q&A
 
