@@ -55,6 +55,13 @@ En cuanto a los archivos sin virus, fueron generados mediante un script propio e
 
 ![](results/count_vs_byte.png)
 
+Según los resultados visualizados en el gráfico anterior, el byte 0 tiene mayor coincidencia en archivos con virus, para archivos sin virus el byte con mayor coincidencia es el 176. Por otro lado, el byte menos frecuente en archivos con virus es 178 y en archivos sin virus es el 21.
+Se puede concluir que en los archivos analizados que son un total de 50 con virus y 50 sin virus, se coincide con que hay mayor cantidad de bytes con valores bajos que altos en los archivos maliciosos y en los archivos sin virus hay mayor cantidad de bytes con valores altos que bajos.
+
 ### Mejora en el rendimiento al aplicar paralelización
 
 ![](results/time_vs_threads.png)
+
+Basandose en el gráfico anterior, se tiene que con una cantidad aproximada de 2 hilos el tiempo de lectura para archivos sin virus es alto con un promedio de 8 segundos y para archivos sin virus con la misma cantidad de hilos se leen en promedio con al rededor de 4 segundos, conforme aumenta la cantidad de hilos se observa que no hay una mejora del tiempo de lectura al llegar a los 35 hilos teniendo que el tiempo se mantiene constante en aproximadamente 1 segundo, sin importar que se lean archivos con o sin virus.
+
+Concluyendo así, que el uso de la paralelización permite el análisis de grandes cantidades de archivos en el menor tiempo posible.
