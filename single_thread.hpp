@@ -5,7 +5,7 @@ void countBytesSingleThreaded(FILE *file, vector<ByteCount> &bytes)
     long fileSize = getFileSizeIn(SizeUnit::BYTES, file);
 
     unsigned char byte;
-
+    // Iterate over each byte in the file
     for (size_t i = 0; i < fileSize; i++)
     {
         byte = fgetc(file);
@@ -13,7 +13,7 @@ void countBytesSingleThreaded(FILE *file, vector<ByteCount> &bytes)
         {
             break;
         }
-        bytes[byte].count++;
+        bytes[byte].count++; // Increment the count of the byte, each index represents a byte value
     }
 }
 
