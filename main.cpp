@@ -1,6 +1,27 @@
 #include "single_thread.hpp"
 #include "multi_thread.hpp"
 
+/*
+    ---------------- INTRODUCTION TO PARALLEL PROGRAMMING PROJECT ----------------
+
+    The program to be converted is a byte counter written in C.
+    The goal is to compare the performance between sequential
+    and fully parallel counting. This program performs
+    the reading of any type of files, performing the reading in binary form.
+
+    Authors:
+        - Emilio Chang Bustamante
+        - Isaac Palma Medina
+        - Karla Quirós delgado
+
+    Date: 2024-05-19
+
+    How to run:
+        1. On the repository root directory, run the following commands:
+            $ chmod +x run_main.sh
+            $ ./run_main.sh
+*/
+
 int main(int argc, char *argv[])
 {
     // -----------------------------------------
