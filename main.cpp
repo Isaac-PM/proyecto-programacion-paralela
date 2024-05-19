@@ -1,12 +1,34 @@
 #include "single_thread.hpp"
 #include "multi_thread.hpp"
 
+/*
+    ---------------- INTRODUCTION TO PARALLEL PROGRAMMING PROJECT ----------------
+
+    The program to be converted is a byte counter written in C.
+    The goal is to compare the performance between sequential
+    and fully parallel counting. This program performs
+    the reading of any type of files, performing the reading in binary form.
+
+    Authors:
+        - Emilio Chang Bustamante
+        - Isaac Palma Medina
+        - Karla Quirós delgado
+
+    Date: 2024-05-19
+
+    How to run:
+        1. On the repository root directory, run the following commands:
+            $ chmod +x run_main.sh
+            $ ./run_main.sh
+*/
+
 int main(int argc, char *argv[])
 {
     // -----------------------------------------
     // Virus samples
     double averageTime = 0.0;
-    try{
+    try
+    {
         fstream virusTimeResults(VIRUS_TIME_RESULTS, ios::out);
         virusTimeResults << "Threads,Average_Time\n";
         cout << "Reading virus samples...\n";
@@ -19,13 +41,16 @@ int main(int argc, char *argv[])
         }
         virusTimeResults.close();
         cout << '\n';
-    }catch(...){
+    }
+    catch (...)
+    {
         cerr << "Error while running virus samples tests\n";
     }
 
     // -----------------------------------------
     // Clean samples
-    try{
+    try
+    {
         fstream cleanTimeResults(CLEAN_TIME_RESULTS, ios::out);
         cleanTimeResults << "Threads,Average_Time\n";
         averageTime = 0.0;
@@ -38,7 +63,9 @@ int main(int argc, char *argv[])
             cleanTimeResults << i << "," << averageTime << '\n';
         }
         cleanTimeResults.close();
-    }catch(...){
+    }
+    catch (...)
+    {
         cerr << "Error while running clean samples tests\n";
     }
 

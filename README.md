@@ -9,12 +9,20 @@
 
 # Objetivo del proyecto
 
-Convertir un programa secuencial a uno que utilice hilos, con la finalidad de estudiar las diferencias de rendimiento entre ambas metodologías.
+Convertir un programa secuencial a uno que utilice hilos (paralelismo), con la finalidad de estudiar las diferencias de rendimiento entre ambas metodologías.
 
 # Programa a convertir
 
-Contador de bytes escrito en C, para comparar el rendimiento entre contar de forma secuencial y de manera completamente paralela, esto para identificar si existe una correlación entre la cuenta de bytes de archivos maliciosos y archivos comunes.
+El programa a convertir es un contador de bytes escrito en C. Se busca comparar el rendimiento entre contar de forma secuencial y de manera completamente paralela.
+Este programa realiza la lectura de cualquier tipo de archivos, realizando la lectura de forma binaria.
 
+## Los objetivos específicos son:
+
+1. Comparar el rendimiento: Evaluar la eficiencia de contar bytes en archivos utilizando un enfoque secuencial versus un enfoque paralelo.
+2. Correlación de bytes: Identificar si existe una correlación entre la distribución de bytes en archivos maliciosos y archivos comunes.
+3. Identificación de bytes frecuentes: Determinar si hay bytes con mayor coincidencia en archivos maliciosos en comparación con archivos comunes.
+4. Análisis de hallazgos: Realizar un análisis detallado de los resultados obtenidos para extraer conclusiones relevantes sobre la naturaleza de los archivos maliciosos y comunes.
+   
 # Q&A
 
 <div style="
