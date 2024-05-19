@@ -62,6 +62,6 @@ Se puede concluir que en los archivos analizados que son un total de 50 con viru
 
 ![](results/time_vs_threads.png)
 
-Basandose en el gráfico anterior, se tiene que con una cantidad aproximada de 2 hilos el tiempo de lectura para archivos sin virus es alto con un promedio de 8 segundos y para archivos sin virus con la misma cantidad de hilos se leen en promedio con al rededor de 4 segundos, conforme aumenta la cantidad de hilos se observa que no hay una mejora del tiempo de lectura al llegar a los 35 hilos teniendo que el tiempo se mantiene constante en aproximadamente 1 segundo, sin importar que se lean archivos con o sin virus.
+Basandose en el gráfico anterior, se tiene que con una cantidad aproximada de 2 hilos el tiempo de lectura para archivos sin virus es alto con un promedio de 8 segundos y para archivos con virus con la misma cantidad de hilos se leen en promedio con al rededor de 4 segundos, conforme aumenta la cantidad de hilos se observa que no hay una mejora del tiempo de lectura al llegar a los 35 hilos teniendo que el tiempo se mantiene constante en aproximadamente 1 segundo, sin importar que se lean archivos con o sin virus.
 
 Concluyendo así, que el uso de la paralelización permite el análisis de grandes cantidades de archivos en el menor tiempo posible.
