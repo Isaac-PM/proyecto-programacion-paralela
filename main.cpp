@@ -6,7 +6,8 @@ int main(int argc, char *argv[])
     // -----------------------------------------
     // Virus samples
     double averageTime = 0.0;
-    try{
+    try
+    {
         fstream virusTimeResults(VIRUS_TIME_RESULTS, ios::out);
         virusTimeResults << "Threads,Average_Time\n";
         cout << "Reading virus samples...\n";
@@ -19,13 +20,16 @@ int main(int argc, char *argv[])
         }
         virusTimeResults.close();
         cout << '\n';
-    }catch(...){
+    }
+    catch (...)
+    {
         cerr << "Error while running virus samples tests\n";
     }
 
     // -----------------------------------------
     // Clean samples
-    try{
+    try
+    {
         fstream cleanTimeResults(CLEAN_TIME_RESULTS, ios::out);
         cleanTimeResults << "Threads,Average_Time\n";
         averageTime = 0.0;
@@ -38,7 +42,9 @@ int main(int argc, char *argv[])
             cleanTimeResults << i << "," << averageTime << '\n';
         }
         cleanTimeResults.close();
-    }catch(...){
+    }
+    catch (...)
+    {
         cerr << "Error while running clean samples tests\n";
     }
 
