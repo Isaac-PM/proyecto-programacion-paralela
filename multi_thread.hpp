@@ -42,7 +42,7 @@ void countBytesMultiThreaded(const char *filename, int threadNumber, vector<Byte
             int byte = fgetc(fileLocal);
             if (byte != EOF)
             {
-                byteCounts[threadId][byte]++; // each thread save their frequencies in their local array buffer
+                byteCounts[threadId][byte]++; // each thread saves its frequencies in their local array buffer
             }
         }
 
