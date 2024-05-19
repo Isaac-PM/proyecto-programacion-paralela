@@ -12,10 +12,9 @@ void countBytesMultiThreaded(const char *filename, int threadNumber, vector<Byte
     }
 
     long fileSize = getFileSizeIn(SizeUnit::BYTES, file);
-    int bytesPerThread = fileSize / threadNumber;
+    int bytesPerThread = fileSize / threadNumber; // calculate how many bytes each thread has to count
     int bytesForLastThread = fileSize % threadNumber + bytesPerThread;
 
-    int globalByteCounts[256] = {0};
     unsigned int **byteCounts = new unsigned int *[threadNumber];
 
     for (int i = 0; i < threadNumber; ++i)
@@ -23,14 +22,14 @@ void countBytesMultiThreaded(const char *filename, int threadNumber, vector<Byte
         byteCounts[i] = new unsigned int[256]{0};
     }
 
-#pragma omp parallel num_threads(threadNumber)
+    #pragma omp parallel num_threads(threadNumber)
     {
         int threadId = omp_get_thread_num();
         FILE *fileLocal = fopen(filename, "rb");
         if (!fileLocal)
         {
             cerr << "Error opening file in thread " << threadId << endl;
-#pragma omp cancel parallel
+        #pragma omp cancel parallel
         }
 
         int start = threadId * bytesPerThread;
@@ -43,7 +42,7 @@ void countBytesMultiThreaded(const char *filename, int threadNumber, vector<Byte
             int byte = fgetc(fileLocal);
             if (byte != EOF)
             {
-                byteCounts[threadId][byte]++;
+                byteCounts[threadId][byte]++; // each thread save their frequencies in their local array buffer
             }
         }
 
